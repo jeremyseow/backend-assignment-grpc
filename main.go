@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"log"
 	"net"
 
 	"github.com/jeremyseow/backend-assignment-grpc/config"
@@ -31,6 +32,7 @@ func main() {
 
 func (s *server) SendEvent(_ context.Context, request *pb.EventRequest) (*pb.EventResponse, error) {
 	result := request.String()
+	log.Printf("size of request: %d", len(request.Events))
 
 	return &pb.EventResponse{Result: result}, nil
 }
